@@ -549,23 +549,3 @@ Gjennom denne uka har jeg lært at god IT-sikkerhet ikke handler om én enkelt i
 Jeg har arbeidet med Active Directory, brukere og grupper, minste privilegium, Group Policy, Windows Defender Firewall, Password Policy, Account Lockout Policy, PowerShell og Event Viewer. Jeg har også lært å kontrollere om sikkerhetsinnstillinger fungerer, og å undersøke sikkerhetshendelser på en systematisk måte.
 
 Det viktigste er å forstå hva vi forsøker å beskytte, hvorfor sikkerhetstiltakene brukes, hvordan vi tester dem, og hvordan vi finner årsaken når noe ikke fungerer.
-
-Skjermbilder – slik legger du til flere
-
-Alle bilder ligger i mappen [images/](images/). Under de fleste steg er det en skjult Markdown-bildelinje, for eksempel:
-
-```markdown
-
-📷 Sett inn skjermbilde: Onsdag – Windows Firewall
-
-`
-
-Når du har bildet, legger du det i images/ med samme filnavn og fjerner <!-- og -->:
-
-```markdown
-
-`
-
-Da vises bildet rett etter steget det dokumenterer. Du kan også bruke egne filnavn, men husk å oppdatere lenken i README.md. Last opp både README.md og images-mappen til GitHub, og kontroller at ingen skjermbilder inneholder ekte passord eller andre hemmeligheter.
-
-Ukeplan – sikkerhet i Active D
