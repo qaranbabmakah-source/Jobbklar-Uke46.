@@ -1,6 +1,6 @@
 # Skolearbeid-Jobbklar-Uke46.
 
-Ukeplan – sikkerhet i Active Directory og Group Policy
+UKE46 Ukeplan – sikkerhet i Active Directory og Group Policy
 
 Praktisk laboratorierapport | Mandag–fredag
 
