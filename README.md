@@ -79,7 +79,9 @@ Steg 1–2 – Sikkerhetsmodell
 Modellen beskriver domenekontrolleren DC01, klienten CLIENT01, brukere og sikkerhetsgrupper. Brukerkontoer plasseres i hensiktsmessige OU-er, og tilgang gis gjennom grupper i stedet for å tildele unødvendige administratorrettigheter direkte til enkeltbrukere.
 
 Skjermbilde/diagram – sikkerhetsmodell:
+
 <img width="1042" height="592" alt="Siikerhetsmodell drawio (1)" src="https://github.com/user-attachments/assets/448b152c-fec6-4b34-915d-075810a1d74f" />
+
 Figur – Sikkerhetsmodell for firma.local
 Når en bruker logger på CLIENT01, bruker klienten DNS til å finne domenekontrolleren DC01. DC01 autentiserer brukeren ved hjelp av Active Directory. Tilgang til ressurser styres av tillatelser som er tildelt sikkerhetsgrupper, for eksempel GG-Support. Group Policy (GPO) brukes til å håndheve sikkerhetsinnstillinger på CLIENT01.
 
@@ -155,7 +157,8 @@ Jeg konfigurerte Interactive logon: Machine inactivity limit til 600 sekunder (1
 Skjermbilde – automatisk låsing:
 
 📷 Sett inn skjermbilde: Onsdag – automatisk låsing. ??????
-Skjermbildet viser at «Interactive logon: Machine inactivity limit» er satt til 600 sekunder (10 minutter) i GPO-Sikkerhetsbaseline-Client01. Innstillingen låser klienten automatisk etter 10 minutter uten aktivitet.
+Skjermbildet viser at «Interactive logon: Machine inactivity limit» er satt til 600 sekunder (10 minutter) i GPO-Sikkerhetsbaseline-Client01. 
+Innstillingen låser klienten automatisk etter 10 minutter uten aktivitet.
 
 Steg 4 – Kontroller Windows Firewall
 
@@ -188,6 +191,7 @@ Oppdateringen ble fullført, og gpresult viste at sikkerhets-GPO-en ble brukt p�
 
 Skjermbilde – Group Policy-resultater:
 <img width="3023" height="4031" alt="Image (7)" src="https://github.com/user-attachments/assets/191e7057-f688-4ff3-973b-6feeaf47df63" />
+
 Resultatet fra `gpresult` viser at `GPO-Sikkerhet-Client01` og `Default Domain Policy` ble brukt på CLIENT01.
 
 Steg 6 – Lag en HTML-rapport
@@ -208,6 +212,7 @@ gpresult HTML-rapport
 
 oversikt over gpresult HTML
 <img width="1536" height="1152" alt="image" src="https://github.com/user-attachments/assets/b8143a22-9df6-4a0f-a8b0-b2d66af9dc17" />
+
 HTML-rapporten fra gpresult viser at CLIENT01 ligger i OU-en firma.local/Bedrift/Datamaskiner. Rapporten viser en advarsel om treg forbindelse og ingen feil ved behandlingen av datamaskinpolicyene.
 
 
@@ -219,6 +224,7 @@ Security Filtering kan begrense hvilke brukere eller datamaskiner som får bruke
 
 Skjermbilde – Security Filtering:
 <img width="1745" height="699" alt="security filtering" src="https://github.com/user-attachments/assets/55065bf3-f9b5-42c6-a390-36379ee9f246" />
+
 Skjermbildet viser at «Authenticated Users» er oppført under «Security Filtering» for GPO-Sikkerhetsbaseline-Client01.
 
 Konklusjon: Jeg konfigurerte en sikkerhetsbaseline, verifiserte brannmurprofiler og undersøkte at klienten mottok de relevante gruppepolicyene.
