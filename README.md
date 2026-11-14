@@ -20,7 +20,7 @@ Hvorfor er Domain Admins viktig? Medlemmene i Domain Admins har svært høye ret
 
 Skjermbilde – medlemmer av Domain Admins:
 
-📷 Sett inn skjermbilde: Steg 1 – Domain Admins
+📷 Sett inn skjermbilde: Steg 1 – Domain Admins???
 
 Steg 4 – Vanlig konto og administratorkonto
 
@@ -32,7 +32,7 @@ Hvis en vanlig brukerkonto kompromitteres, skal det ikke automatisk gi tilgang t
 
 Skjermbilde – vanlige og administrative kontoer:
 
-📷 Sett inn skjermbilde: Steg 4 – separate kontoer
+📷 Sett inn skjermbilde: Steg 4 – separate kontoer?????
 
 Steg 5 – Deaktiver en testkonto
 
@@ -42,7 +42,7 @@ Det kan være bedre å deaktivere en konto før den slettes: Pålogging blir blo
 
 Skjermbilde – `Enabled: False`:
 
-📷 Sett inn skjermbilde: Steg 5 – deaktivert konto
+📷 Sett inn skjermbilde: Steg 5 – deaktivert konto ??????
 
 Mandagens grunnoppgave – spørsmål og svar
 
@@ -79,8 +79,11 @@ Steg 1–2 – Sikkerhetsmodell
 Modellen beskriver domenekontrolleren DC01, klienten CLIENT01, brukere og sikkerhetsgrupper. Brukerkontoer plasseres i hensiktsmessige OU-er, og tilgang gis gjennom grupper i stedet for å tildele unødvendige administratorrettigheter direkte til enkeltbrukere.
 
 Skjermbilde/diagram – sikkerhetsmodell:
+<img width="1042" height="592" alt="Siikerhetsmodell drawio (1)" src="https://github.com/user-attachments/assets/448b152c-fec6-4b34-915d-075810a1d74f" />
+Figur – Sikkerhetsmodell for firma.local
+Når en bruker logger på CLIENT01, bruker klienten DNS til å finne domenekontrolleren DC01. DC01 autentiserer brukeren ved hjelp av Active Directory. Tilgang til ressurser styres av tillatelser som er tildelt sikkerhetsgrupper, for eksempel GG-Support. Group Policy (GPO) brukes til å håndheve sikkerhetsinnstillinger på CLIENT01.
 
-📷 Sett inn skjermbilde: Tirsdag – sikkerhetsmodell
+
 
 Steg 3 – Finn risikoer og foreslå tiltak
 
@@ -102,9 +105,10 @@ Steg 3 – Finn risikoer og foreslå tiltak
 
   |   Samme administratorkonto brukes til alt   |   Skill mellom vanlig konto og administratorkonto.   |  
 
-Skjermbilde – risikovurdering:
 
-📷 Sett inn skjermbilde: Tirsdag – risikoer og tiltak
+
+📷 Sett inn skjermbilde: Tirsdag – risikoer og tiltak ?????
+Jeg vurderte hvilke risikoer som kan oppstå i domenet, og foreslo tiltak for hver risiko. For å begrense tilgangen foreslo jeg å redusere antallet medlemmer i Domain Admins, deaktivere gamle kontoer og bruke sikkerhetsgrupper til å styre tilgang til ressurser.
 
 Steg 4 – Sammenlign modell og virkelig miljø
 
@@ -113,18 +117,16 @@ Jeg sammenlignet sikkerhetsmodellen med det faktiske miljøet. Jeg kontrollerte 
 Jeg brukte gpresult /scope computer /r på klienten for å se hvilke GPO-er som faktisk var brukt. Dokumentasjonen fra denne kontrollen viser en sikkerhets-GPO og Default Domain Policy. Merk: GPO-navnet i eldre deler av laboratoriet kan avvike fra navnet på sikkerhetsbaseline-GPO-en som ble opprettet senere.
 
 Skjermbilde – IP-konfigurasjon / DNS-kontroll:
+<img width="1536" height="1152" alt="image" src="https://github.com/user-attachments/assets/be5c4c4d-c416-4340-9523-350a80bcae29" />
+Jeg kjørte ipconfig /all på CLIENT01 for å kontrollere IP-konfigurasjonen og se hvilken DNS-server klienten bruker.
 
 
+ipconfig og nettverksinformasjon
 
-Tirsdag – ipconfig og nettverksinformasjon
-
-Skjermbilde – anvendte GPO-er på CLIENT01:
-
-
-
-Tirsdag – gpresult i kommandolinjen
+<img width="1152" height="1536" alt="image" src="https://github.com/user-attachments/assets/bff5c265-2d82-4c35-8826-92b95cda59a1" />
 
 Konklusjon: Sikkerhetsmodellen stemte med viktige deler av miljøet. Kontrollen hjalp meg å knytte teori om grupper, DNS og Group Policy til konkrete innstillinger.
+
 
 Onsdag – sikkerhetsbaseline med Group Policy
 
@@ -138,7 +140,9 @@ En separat GPO gjør det enklere å administrere, teste og dokumentere sikkerhet
 
 Skjermbilde – GPO og OU-kobling:
 
-📷 Sett inn skjermbilde: Onsdag – GPO-kobling
+<img width="1745" height="699" alt="security filtering" src="https://github.com/user-attachments/assets/9cbeb8c7-82b3-4668-b378-8d9efe3890a2" />
+Skjermbildet viser at GPO-Sikkerhetsbaseline-Client01 er koblet til OU-en firma.local/Bedrift/Datamaskiner, og at koblingen er aktivert (Link Enabled: Yes).
+
 
 Steg 3 – Automatisk låsing av maskinen
 
@@ -150,7 +154,8 @@ Jeg konfigurerte Interactive logon: Machine inactivity limit til 600 sekunder (1
 
 Skjermbilde – automatisk låsing:
 
-📷 Sett inn skjermbilde: Onsdag – automatisk låsing
+📷 Sett inn skjermbilde: Onsdag – automatisk låsing. ??????
+Skjermbildet viser at «Interactive logon: Machine inactivity limit» er satt til 600 sekunder (10 minutter) i GPO-Sikkerhetsbaseline-Client01. Innstillingen låser klienten automatisk etter 10 minutter uten aktivitet.
 
 Steg 4 – Kontroller Windows Firewall
 
@@ -160,13 +165,12 @@ På CLIENT01 kjørte jeg:
 
 netsh advfirewall show allprofiles state
 
-`
-
 Resultatet viste at Domain Profile, Private Profile og Public Profile var ON. Brannmuren kontrollerer nettverkstrafikk og er et ekstra sikkerhetslag.
 
 Skjermbilde – alle brannmurprofiler ON:
 
-📷 Sett inn skjermbilde: Onsdag – Windows Firewall
+📷 Sett inn skjermbilde: Onsdag – Windows Firewall ?????????
+Jeg kjørte `netsh advfirewall show allprofiles state` på CLIENT01. Resultatet viser at Windows-brannmuren er aktivert (ON) for alle tre profiler: domene, privat og offentlig.
 
 Steg 5 – Oppdater CLIENT01
 
@@ -183,8 +187,8 @@ gpresult /scope computer /r
 Oppdateringen ble fullført, og gpresult viste at sikkerhets-GPO-en ble brukt på CLIENT01.
 
 Skjermbilde – Group Policy-resultater:
-
-📷 Sett inn skjermbilde: Onsdag – gpresult
+<img width="3023" height="4031" alt="Image (7)" src="https://github.com/user-attachments/assets/191e7057-f688-4ff3-973b-6feeaf47df63" />
+Resultatet fra `gpresult` viser at `GPO-Sikkerhet-Client01` og `Default Domain Policy` ble brukt på CLIENT01.
 
 Steg 6 – Lag en HTML-rapport
 
@@ -199,14 +203,13 @@ gpresult /scope computer /h C:\Temp\gpo.html
 Rapporten viste at CLIENT01 tilhører firma.local og ligger i Bedrift/Datamaskiner. Det ble ikke vist feil ved behandlingen av datamaskinpolicyene. Rapporten viste også en advarsel om en treg kobling; dette er ikke det samme som en behandlingsfeil.
 
 Skjermbilder – HTML-rapporten:
+<img width="1152" height="1536" alt="image" src="https://github.com/user-attachments/assets/396f3753-393f-4f76-9184-e55efa264688" />
+gpresult HTML-rapport
 
+oversikt over gpresult HTML
+<img width="1536" height="1152" alt="image" src="https://github.com/user-attachments/assets/b8143a22-9df6-4a0f-a8b0-b2d66af9dc17" />
+HTML-rapporten fra gpresult viser at CLIENT01 ligger i OU-en firma.local/Bedrift/Datamaskiner. Rapporten viser en advarsel om treg forbindelse og ingen feil ved behandlingen av datamaskinpolicyene.
 
-
-Onsdag – gpresult HTML-rapport
-
-
-
-Onsdag – oversikt over gpresult HTML
 
 Videre utforskning – Security Filtering
 
@@ -215,10 +218,11 @@ Jeg undersøkte Security Filtering for GPO-Sikkerhetsbaseline-Client01. GPO-en v
 Security Filtering kan begrense hvilke brukere eller datamaskiner som får bruke en GPO. Det forutsetter at de aktuelle objektene har nødvendige rettigheter til å lese og bruke policyen. Jeg undersøkte innstillingene uten å endre dem.
 
 Skjermbilde – Security Filtering:
-
-📷 Sett inn skjermbilde: Onsdag – Security Filtering
+<img width="1745" height="699" alt="security filtering" src="https://github.com/user-attachments/assets/55065bf3-f9b5-42c6-a390-36379ee9f246" />
+Skjermbildet viser at «Authenticated Users» er oppført under «Security Filtering» for GPO-Sikkerhetsbaseline-Client01.
 
 Konklusjon: Jeg konfigurerte en sikkerhetsbaseline, verifiserte brannmurprofiler og undersøkte at klienten mottok de relevante gruppepolicyene.
+
 
 Torsdag – passordsikkerhet, kontolåsing og logging
 
@@ -245,10 +249,12 @@ Jeg åpnet Default Domain Policy i Group Policy Management og undersøkte Passwo
 En terskel på 0 betyr at kontoen ikke automatisk låses basert på antall feil passordforsøk. Før endringen var varighet og nullstilling ikke definert i den undersøkte GPO-en.
 
 Skjermbilde – opprinnelig kontolåsepolicy:
+<img width="1152" height="1536" alt="image" src="https://github.com/user-attachments/assets/34d92de4-11e8-4021-8ce5-17a62b28ee5a" />
+Skjermbildet viser kontolåsepolicyen før endringen. Terskelen var satt til 0, så gjentatte mislykkede påloggingsforsøk førte ikke til automatisk kontolåsing.
+
+Account Lockout Policy før endring
 
 
-
-Torsdag – Account Lockout Policy før endring
 
 Steg 2 – Konfigurer Account Lockout Policy
 
@@ -272,13 +278,13 @@ gpupdate /force
 
 net accounts /domain
 
-`
-
 net accounts /domain bekreftet at terskelen var 5 og låsevarigheten 10 minutter. Kontolåsing reduserer risikoen ved gjentatte passordforsøk, men innstillingene må balanseres mot brukervennlighet.
 
 Skjermbilde – nye verdier / `net accounts /domain`:
 
-📷 Sett inn skjermbilde: Torsdag – konfigurert kontolåsing
+ konfigurert kontolåsing
+<img width="821" height="1459" alt="image" src="https://github.com/user-attachments/assets/bd23098d-c4bf-40be-8cfe-723f57afa960" />
+Skjermbildet viser kontolåsepolicyen i Default Domain Policy etter endringen. Kontoen låses i 10 minutter etter fem mislykkede påloggingsforsøk. Telleren nullstilles etter 10 minutter uten nye mislykkede forsøk.
 
 Steg 3 – Test kontolåsing med testbruker
 
@@ -295,14 +301,17 @@ Get-ADUser testbruker1 -Properties LockedOut
 Resultatet viste Enabled: True og LockedOut: True. Kontoen var altså aktiv, men låst. Testkontoen ble brukt for å unngå å låse en administratorkonto.
 
 Skjermbilde – sperret konto på CLIENT01:
+<img width="1536" height="1152" alt="image" src="https://github.com/user-attachments/assets/5367b5d0-3f18-4add-9c71-f98b560cf154" />
+testbruker låst på CLIENT01
+Etter flere mislykkede påloggingsforsøk viste Windows på CLIENT01 at kontoen `testbruker1` var låst og ikke kunne logge på.
 
 
-
-Torsdag – testbruker låst på CLIENT01
 
 Skjermbilde – `LockedOut: True`:
+<img width="821" height="1459" alt="image" src="https://github.com/user-attachments/assets/536db4a3-5576-400d-848f-4d9e5ab41d37" />
+PowerShell-resultatet viser at `testbruker1` var aktivert (`Enabled: True`) og sperret for pålogging (`LockedOut: True`).
 
-📷 Sett inn skjermbilde: Torsdag – LockedOut True
+
 
 Steg 4 – Lås opp testbrukeren
 
@@ -319,10 +328,10 @@ Get-ADUser testbruker1 -Properties LockedOut
 Resultatet viste LockedOut: False, som bekreftet at kontoen ikke lenger var sperret. Jeg prøvde først et feil kommandonavn, Unlock-ADUser, men korrigerte dette til den riktige cmdleten Unlock-ADAccount.
 
 Skjermbilde – opplåsing og bekreftelse:
+<img width="1536" height="1152" alt="image" src="https://github.com/user-attachments/assets/6f0da0c3-6a66-4abb-8c4d-ebf82673c6be" />
+ Unlock-ADAccount og LockedOut False
+Jeg låste opp testbruker1 med Unlock-ADAccount på DC01. Kontrollen etterpå viste LockedOut: False, som bekreftet at kontoen var låst opp.
 
-
-
-Torsdag – Unlock-ADAccount og LockedOut False
 
 Steg 5 – Undersøk sikkerhetsloggen
 
@@ -333,8 +342,9 @@ Deretter fant jeg Event ID `4740`, som viste at FIRMA\testbruker1 var blitt lås
 Dette stemte med PowerShell-kontrollen LockedOut: True.
 
 Skjermbilde – Event ID 4740:
+<img width="1749" height="1215" alt="stage 5 undersøk sikkerhetsloggen (1)" src="https://github.com/user-attachments/assets/ab82d97a-4fa2-482b-8287-651396b45102" />
+Hendelse 4740 i sikkerhetsloggen på DC01 viser at kontoen `FIRMA\testbruker1` ble låst. `CLIENT01` er oppført som kildedatamaskin.
 
-📷 Sett inn skjermbilde: Torsdag – Event ID 4740
 
 Steg 6 – Auditing og PowerShell
 
@@ -351,8 +361,9 @@ Kommandoen viste fem hendelser med Event ID 4625. Jeg kunne se tidspunkt, hendel
 Auditing og PowerShell gjør det enklere å finne, filtrere og undersøke relevante sikkerhetshendelser.
 
 Skjermbilde – PowerShell, Event ID 4625:
+<img width="1418" height="764" alt="event ID 4624-4625 (1)" src="https://github.com/user-attachments/assets/5d364a77-24d2-45a2-a305-5cca148c2443" />
+Skjermbildet viser fem hendelser med ID 4625 fra sikkerhetsloggen. Hendelsene viser mislykkede pålogginger på tidligere datoer, men resultatet viser ikke hvilken konto de gjaldt.
 
-📷 Sett inn skjermbilde: Torsdag – PowerShell auditing
 
 Steg 7 – Sikkerhetsdetektiv
 
@@ -395,8 +406,9 @@ Videre utforskning – Advanced Audit Policy
 Jeg undersøkte Advanced Audit Policy Configuration i Default Domain Policy, blant annet kategoriene Account Logon og Logon/Logoff. De undersøkte innstillingene stod som Ikke konfigurert i denne GPO-en. Det betyr ikke nødvendigvis at auditing er deaktivert i miljøet. Jeg gjorde ingen endringer.
 
 Skjermbilde – Advanced Audit Policy:
+<img width="1202" height="597" alt="undersøkelse ac Account Logon i advanced audit policy" src="https://github.com/user-attachments/assets/d564a927-41d6-48fc-b58e-23989b05040b" />
+Skjermbildet viser at de viste innstillingene under «På-/avlogging» (Logon/Logoff) er merket «Ikke konfigurert» i Default Domain Policy.
 
-📷 Sett inn skjermbilde: Torsdag – Advanced Audit Policy
 
 Videre utforskning – Sammenlign Event ID 4624 og 4625
 
@@ -417,10 +429,11 @@ Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4625} -MaxEvents 5
 Begge kommandoene viste fem hendelser. Hendelsene med ID 4625 var eldre enn de viste hendelsene med ID 4624, og de kan derfor ikke uten videre knyttes til testen med testbruker1.
 
 Skjermbilde – sammenligning av 4624 og 4625:
+<img width="1418" height="764" alt="event ID 4624-4625 (2)" src="https://github.com/user-attachments/assets/5ef05770-1f17-4040-a314-40b3b6ceace5" />
+PowerShell viser fem vellykkede pålogginger (hendelse 4624) øverst og fem mislykkede pålogginger (hendelse 4625) nederst.
 
-📷 Sett inn skjermbilde: Torsdag – Event ID 4624 og 4625
 
-Torsdagens konklusjon: Jeg konfigurerte og testet kontolåsing, låste opp en testkonto, undersøkte sikkerhetslogger og brukte PowerShell til å filtrere hendelser. Dette viser sammenhengen mellom forebygging, testing og logging.
+konklusjon: Jeg konfigurerte og testet kontolåsing, låste opp en testkonto, undersøkte sikkerhetslogger og brukte PowerShell til å filtrere hendelser. Dette viser sammenhengen mellom forebygging, testing og logging.
 
 Fredag – oppsummering og systematisk feilsøking
 
@@ -443,8 +456,9 @@ Sikkerhetslogg: Undersøk relevante hendelser i Event Viewer, for eksempel 4625 
 Hvorfor denne rekkefølgen? Den hjelper administratoren med å utelukke grunnleggende feil før mer avansert feilsøking, i stedet for å endre tilfeldige innstillinger.
 
 Skjermbilde – feilsøkingsrekkefølge:
+<img width="362" height="511" alt="Untitled Diagram drawio (3)" src="https://github.com/user-attachments/assets/fa2519b2-70a0-4e14-af75-eedfda22edbc" />
+Figuren viser i hvilken rekkefølge jeg ville undersøkt påloggingsproblemer på CLIENT01, fra kontroll av nettverk og DNS til gjennomgang av sikkerhetsloggen.
 
-📷 Sett inn skjermbilde: Fredag – feilsøking
 
 Sikkerhetskjeden
 
