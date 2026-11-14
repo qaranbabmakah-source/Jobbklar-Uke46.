@@ -228,6 +228,8 @@ Konklusjon: Jeg konfigurerte en sikkerhetsbaseline, verifiserte brannmurprofiler
 
 Torsdag – passordsikkerhet, kontolåsing og logging
 
+
+
 Steg 1 – Kontroller domenets kontopolicy
 
 Jeg åpnet Default Domain Policy i Group Policy Management og undersøkte Password Policy og Account Lockout Policy.
@@ -246,12 +248,16 @@ Jeg åpnet Default Domain Policy i Group Policy Management og undersøkte Passwo
 
   |   Kompleksitetskrav   |   Aktivert   |  
 
-  |   Account lockout threshold   |   0 ugyldige forsøk   |  
+  |   Account lockout threshold   |   0 ugyldige forsøk   |
+
 
 En terskel på 0 betyr at kontoen ikke automatisk låses basert på antall feil passordforsøk. Før endringen var varighet og nullstilling ikke definert i den undersøkte GPO-en.
 
 Skjermbilde – opprinnelig kontolåsepolicy:
-<img width="1152" height="1536" alt="image" src="https://github.com/user-attachments/assets/34d92de4-11e8-4021-8ce5-17a62b28ee5a" />
+
+<img width="1030" height="703" alt="last ned" src="https://github.com/user-attachments/assets/ff7b2e9d-086c-472b-ba23-20cd3d02e66f" />
+
+
 Skjermbildet viser kontolåsepolicyen før endringen. Terskelen var satt til 0, så gjentatte mislykkede påloggingsforsøk førte ikke til automatisk kontolåsing.
 
 Account Lockout Policy før endring
@@ -556,7 +562,6 @@ Identitet gir brukeren en egen konto. Autentisering bekrefter identiteten. Activ
 
 Skjermbilde – ukas oppsummering:
 
-📷 Sett inn skjermbilde: Fredag – oppsummering
 
 Sluttrefleksjon
 
