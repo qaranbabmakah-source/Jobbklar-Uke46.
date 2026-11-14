@@ -162,10 +162,6 @@ Innstillingen låser klienten automatisk etter 10 minutter uten aktivitet.
 
 Steg 4 – Kontroller Windows Firewall
 
-På CLIENT01 kjørte jeg:
-
-```powershell
-
 netsh advfirewall show allprofiles state
 
 Resultatet viste at Domain Profile, Private Profile og Public Profile var ON. Brannmuren kontrollerer nettverkstrafikk og er et ekstra sikkerhetslag.
